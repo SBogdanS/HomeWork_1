@@ -41,6 +41,7 @@ class Phone(Field):
 
 class Birthday(Field):
     def __init__(self, value):
+        super().__init__(value)
         date_format = "%d.%m.%Y"
         try:
             self.date = datetime.strptime(value, date_format).date()
