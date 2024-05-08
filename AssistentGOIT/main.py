@@ -1,27 +1,29 @@
 import pickle
+from abc import ABC, abstractmethod
 from collections import UserDict
 from datetime import datetime, timedelta
 from pathlib import Path
-from abc import ABC, abstractmethod
 
 file_path = Path("database.bin")
 
 
-class Field (ABC):
+class Field(ABC):
 
     @abstractmethod
     def __init__(self, value):
-        pass
+        self.value = value
 
     def __str__(self):
         return str(self.value)
 
 
 class Name(Field):
-    pass
+    def __init__(self, value):
+        super().__init__(value)
 
 
 class Phone(Field):
+
     def __init__(self, value):
         super().__init__(value)
         self.__value = None
@@ -40,6 +42,7 @@ class Phone(Field):
 
 
 class Birthday(Field):
+
     def __init__(self, value):
         super().__init__(value)
         date_format = "%d.%m.%Y"
@@ -51,6 +54,7 @@ class Birthday(Field):
 
 
 class Record:
+
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
@@ -77,6 +81,7 @@ class Record:
 
 
 class AddressBook(UserDict):
+
     def add_record(self, record: Record):
         self.data[record.name.value] = record
 
@@ -129,6 +134,7 @@ class AddressBook(UserDict):
 
 
 def input_error(func):
+
     def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
