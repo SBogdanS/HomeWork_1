@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "assistent"
+version = "1"
+description = ""
+authors = ["SBogdanS <sbodia09@gmail.com>"]
+license = "MET"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.14"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
